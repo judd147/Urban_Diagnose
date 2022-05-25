@@ -1,6 +1,6 @@
 name: urban_center
 dependencies:
+  - numpy
   - plotly
   - geopandas
   - libpysal
-  - numpy=1.22.4
