@@ -4,6 +4,6 @@ dependencies:
   - plotly
   - numpy
   - geopandas
-  - libspatialindex
+  - pygeos
   - protobuf>=3.6.0
   - click==8
