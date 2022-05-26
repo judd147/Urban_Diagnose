@@ -4,9 +4,10 @@ dependencies:
   - plotly
   - numpy
   - pandas
-  - fiona
+  - gdal
   - shapely
   - pyproj
+  - fiona
   - libspatialindex
   - geopandas
   - protobuf>=3.6.0
