@@ -4,5 +4,5 @@ dependencies:
   - plotly
   - geopandas
   - libpysal
-  - protobuf >= 3.6.0
-  - click = 8
+  - protobuf>=3.6.0
+  - click==8
