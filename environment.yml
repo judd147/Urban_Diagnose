@@ -3,6 +3,8 @@ name: urban_center
 dependencies:
   - plotly
   - numpy
-  - geopandas
   - protobuf>=3.6.0
   - click==8
+  - pip
+  - pip:
+      - geopandas
