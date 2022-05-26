@@ -4,6 +4,7 @@ dependencies:
   - plotly
   - numpy
   - protobuf>=3.6.0
+  - libpysal
   - pip
   - pip:
       - geopandas
