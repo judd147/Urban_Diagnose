@@ -9,4 +9,3 @@ dependencies:
   - protobuf>=3.6.0
   - click==8
   - libspatialindex
-  - rtree
