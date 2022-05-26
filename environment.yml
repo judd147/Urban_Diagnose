@@ -3,12 +3,6 @@ channels:
   - conda-forge
 dependencies:
   - numpy
-  - plotly
-  - pandas
-  - shapely
-  - fiona
-  - pyproj
   - geopandas
-  - libpysal
   - protobuf>=3.6.0
   - click==8
