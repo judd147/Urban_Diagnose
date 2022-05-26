@@ -1,5 +1,4 @@
 plotly
 numpy==1.22.4
 geopandas
-protobuf>=3.6.0
 click==8
