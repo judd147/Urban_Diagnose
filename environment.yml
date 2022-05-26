@@ -3,13 +3,7 @@ name: urban_center
 dependencies:
   - plotly
   - numpy
-  - pandas
-  - gdal
-  - shapely
-  - pyproj
-  - fiona
   - libspatialindex
-  - rtree
   - geopandas
   - protobuf>=3.6.0
   - click==8
