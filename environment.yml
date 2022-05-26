@@ -9,6 +9,7 @@ dependencies:
   - pyproj
   - fiona
   - libspatialindex
+  - rtree
   - geopandas
   - protobuf>=3.6.0
   - click==8
