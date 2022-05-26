@@ -5,6 +5,7 @@ dependencies:
   - numpy
   - protobuf>=3.6.0
   - libpysal
+  - pysal
   - pip
   - pip:
       - geopandas
