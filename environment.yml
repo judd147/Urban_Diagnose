@@ -1,7 +1,6 @@
 name: urban_center
 
 dependencies:
-  - streamlit
   - plotly
   - numpy
   - geopandas
