@@ -1,4 +1,6 @@
 name: urban_center
+channels:
+  - conda-forge
 dependencies:
   - numpy
   - plotly
