@@ -4,11 +4,18 @@
 Last Edit 5/25/2022
 @author: zhangliyao
 """
+import conda
+import os
+
+conda_file_dir = conda.__file__
+conda_dir = conda_file_dir.split('lib')[0]
+proj_lib = os.path.join(os.path.join(conda_dir, 'share'), 'proj')
+os.environ["PROJ_LIB"] = proj_lib
+
 import streamlit as st
 import plotly.express as px
 import pandas as pd
 import geopandas as gpd
-import os
 import libpysal
 import json
 from shapely.geometry import Polygon
