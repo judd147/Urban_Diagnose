@@ -13,16 +13,35 @@ import pandas as pd
 import geopandas as gpd
 import libpysal
 import json
+import yaml
+from yaml.loader import SafeLoader
 from shapely.geometry import Polygon
 from numpy import log as ln
 from pysal.explore.esda import G_Local
 
-def main():
+def main():    
     st.sidebar.title("导航")
     apps = st.sidebar.multiselect("选择分析模块", ["城市中心体系分析"])
-    if apps.__contains__("城市中心体系分析"):
+    
+    with open('D:\Users\zhangliyao\Desktop\Urban_Diagnose-main\config.yaml') as file:
+        config = yaml.load(file, Loader=SafeLoader)
+    authenticator = stauth.Authenticate(
+    config['credentials']['names'],
+    config['credentials']['usernames'],
+    config['credentials']['passwords'],
+    config['cookie']['name'],
+    config['cookie']['key'],
+    config['cookie']['expiry_days'])
+    name, authentication_status, username = authenticator.login('Login', 'main')
+    if st.session_state["authentication_status"] and apps.__contains__("城市中心体系分析"):
+        authenticator.logout('Logout', 'main')
+        st.write(f'Welcome *{st.session_state["name"]}*')
         urban_center_analysis()
-        
+    elif st.session_state["authentication_status"] == False:
+        st.error('Username/password is incorrect')
+    elif st.session_state["authentication_status"] == None:
+        st.warning('Please enter your username and password')
+   
 def urban_center_analysis():
     #数据输入
     st.header("城市中心体系分析")
