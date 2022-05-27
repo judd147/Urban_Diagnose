@@ -8,7 +8,6 @@ dependencies:
   - libpysal
   - pip
   - pip:
-      - pygeos
       - geopandas
       - click==8
       - streamlit_authenticator
