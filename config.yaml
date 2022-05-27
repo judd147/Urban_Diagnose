@@ -1,0 +1,8 @@
+credentials:
+  names: ['Zhang Liyao', 'Xiao Junyao', 'Huang Zhihui', 'Zheng Ting']
+  usernames: ['zhanl022', 'xiaoj022', 'huanz022', 'zhent022']
+  passwords: ['123', '456', '789', '100'] # To be replaced with hashed passwords
+cookie:
+  name: 'cookie01'
+  key: 'sfh3ef&f70qa#kwdJ'
+  expiry_days: 7
