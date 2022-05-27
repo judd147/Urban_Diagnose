@@ -3,12 +3,12 @@ name: urban_center
 dependencies:
   - plotly
   - numpy
-  - pygeos
   - pysal
   - libpysal
   - protobuf>=3.6.0
   - pip
   - pip:
+      - pygeos
       - geopandas
       - click==8
       - streamlit_authenticator
