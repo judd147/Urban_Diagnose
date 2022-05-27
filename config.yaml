@@ -1,7 +1,7 @@
 credentials:
   names: ['Zhang Liyao', 'Xiao Junyao', 'Huang Zhihui', 'Zheng Ting']
   usernames: ['zhanl022', 'xiaoj022', 'huanz022', 'zhent022']
-  passwords: [''$2b$12$DKeytYjADsuShp0jGxbhLOCB3iiMXYecZhu4ILh20mGIKHptC8mP6', '456', '789', '100'] # To be replaced with hashed passwords
+  passwords: ['$2b$12$DKeytYjADsuShp0jGxbhLOCB3iiMXYecZhu4ILh20mGIKHptC8mP6', '456', '789', '100'] # To be replaced with hashed passwords
 cookie:
   name: 'cookie01'
   key: 'sfh3ef&f70qa#kwdJ'
