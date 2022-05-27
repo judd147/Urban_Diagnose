@@ -1,6 +1,7 @@
 name: urban_center
 
 dependencies:
+  - geopandas
   - plotly
   - numpy
   - protobuf>=3.6.0
@@ -8,6 +9,5 @@ dependencies:
   - pysal
   - pip
   - pip:
-      - geopandas
       - click==8
       - streamlit_authenticator
