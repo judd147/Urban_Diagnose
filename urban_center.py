@@ -33,7 +33,6 @@ def urban_center_analysis():
         with st.form(key='urban_center_analysis'):
             #文件设置
             geo = st.file_uploader("上传范围", type='geojson', key='urban_center_analysis')
-            area_path = st.text_input("范围文件所在文件夹", value=r'D:\范围', key='urban_center_analysis')        
             poi_path = st.text_input("POI数据所在文件夹", value=r'\\172.10.10.6\创研中心数据小组\01_数据\06_深圳市高德POI\深圳市高德POI2021\分类', key='urban_center_analysis')
             out_path = st.text_input("结果导出文件夹", value=r'D:\Users\zhangliyao\Desktop', key='urban_center_analysis')
             #参数设置
@@ -90,7 +89,6 @@ def urban_center_analysis():
     elif mode == '可视化':
         data = st.file_uploader("上传分析结果", type='csv', key='replot')
         geo = st.file_uploader("上传范围", type='geojson', key='replot')
-        area_path = st.text_input("范围文件所在文件夹", value=r'D:\范围', key='replot')
         
         if data and geo: 
             df = pd.read_csv(data, encoding = "gb18030")
