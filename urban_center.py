@@ -23,7 +23,7 @@ def main():
     st.sidebar.title("导航")
     apps = st.sidebar.multiselect("选择分析模块", ["城市中心体系分析"])
     
-    with open('https://raw.githubusercontent.com/judd147/Urban_Diagnose/main/config.yaml') as file:
+    with open('../config.yaml') as file:
         config = yaml.load(file, Loader=SafeLoader)
     authenticator = stauth.Authenticate(
     config['credentials']['names'],
