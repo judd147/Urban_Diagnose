@@ -11,3 +11,4 @@ dependencies:
       - geopandas
       - click==8
       - streamlit_authenticator
+      - pandana
