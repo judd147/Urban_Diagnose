@@ -7,8 +7,6 @@ dependencies:
   - libpysal
   - pysal
   - pip
-  - sqlalchemy
-  - psycopg2
   - pip:
       - geopandas
       - click==8
