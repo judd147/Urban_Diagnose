@@ -7,6 +7,7 @@ dependencies:
   - libpysal
   - pip
   - pip:
+      - python==3.8
       - numpy==1.22.4
       - geopandas
       - click==8
