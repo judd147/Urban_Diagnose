@@ -35,15 +35,17 @@ def main():
     config['cookie']['key'],
     config['cookie']['expiry_days'])
     name, authentication_status, username = authenticator.login('Login', 'main')
-    # apps.__contains__("城市中心体系分析")
+    
     if authentication_status:
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{name}*')
-        urban_center_analysis()
     elif authentication_status == False:
         st.error('Username/password is incorrect')
     elif authentication_status == None:
         st.warning('Please enter your username and password')
+        
+    if apps.__contains__("城市中心体系分析"):
+        urban_center_analysis()
    
 def urban_center_analysis():
     #数据输入
