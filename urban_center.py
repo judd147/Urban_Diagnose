@@ -35,8 +35,8 @@ def main():
     config['cookie']['key'],
     config['cookie']['expiry_days'])
     name, authentication_status, username = authenticator.login('Login', 'main')
-    
-    if authentication_status and apps.__contains__("城市中心体系分析"):
+    # apps.__contains__("城市中心体系分析")
+    if authentication_status:
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{name}*')
         urban_center_analysis()
