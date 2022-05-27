@@ -8,6 +8,6 @@ dependencies:
   - pysal
   - pip
   - pip:
-      - geopandas==0.9.0
+      - geopandas
       - click==8
       - streamlit_authenticator
