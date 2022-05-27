@@ -7,7 +7,7 @@ dependencies:
   - libpysal
   - pip
   - pip:
-      - numpy
+      - numpy==1.22.4
       - geopandas
       - click==8
       - streamlit_authenticator
