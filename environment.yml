@@ -3,8 +3,9 @@ name: urban_center
 dependencies:
   - plotly
   - numpy
-  - libpysal
+  - pygeos
   - pysal
+  - libpysal
   - protobuf>=3.6.0
   - pip
   - pip:
