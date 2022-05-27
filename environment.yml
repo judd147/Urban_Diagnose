@@ -1,7 +1,6 @@
 name: urban_center
 
 dependencies:
-  - geopandas
   - plotly
   - numpy
   - protobuf>=3.6.0
@@ -9,5 +8,10 @@ dependencies:
   - pysal
   - pip
   - pip:
+      - gdal==3.2.2
+      - pyproj==3.0.1
+      - fiona==1.8.18
+      - shapely==1.7.1
+      - geopandas
       - click==8
       - streamlit_authenticator
