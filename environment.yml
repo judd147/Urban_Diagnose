@@ -6,8 +6,8 @@ dependencies:
   - protobuf>=3.6.0
   - libpysal
   - pysal
-  - streamlit_authenticator
   - pip
   - pip:
       - geopandas
       - click==8
+      - streamlit_authenticator
