@@ -1,6 +1,5 @@
 name: urban_center
-channels:
-  - conda-forge
+
 dependencies:
   - plotly
   - numpy
@@ -12,4 +11,3 @@ dependencies:
       - geopandas
       - click==8
       - streamlit_authenticator
-
