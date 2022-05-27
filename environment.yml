@@ -8,10 +8,7 @@ dependencies:
   - pysal
   - pip
   - pip:
-      - gdal==3.2.2
-      - pyproj==3.0.1
-      - fiona==1.8.18
-      - shapely==1.7.1
-      - geopandas
+      - pygeos==0.12.0
+      - geopandas==0.10.2
       - click==8
       - streamlit_authenticator
