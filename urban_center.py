@@ -94,7 +94,13 @@ def urban_center_analysis():
         
         if data and geo: 
             df = pd.read_csv(data, encoding = "gb18030")
-            dfy = gpd.read_file(area_path+'\\'+geo.name) #输入范围
+            #dfy = gpd.read_file(area_path+'\\'+geo.name) #输入范围
+            from sqlalchemy import create_engine
+            engine = create_engine('postgresql://postgres:123ronaldo@localhost:5432/postgis_32_sample')
+
+            # 编写取数SQL语句
+            sql = 'SELECT * FROM 龙华区'
+            dfy = gpd.read_postgis(sql, con=engine, geom_col='geometry')
             dfy.to_crs(epsg=4547, inplace=True) #转投影坐标
             show_plot(df, dfy, 1)
 
