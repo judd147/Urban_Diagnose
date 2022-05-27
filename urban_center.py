@@ -26,7 +26,6 @@ def main():
     url = 'https://raw.githubusercontent.com/judd147/Urban_Diagnose/main/config.yaml'
     file = requests.get(url)
     config = yaml.load(file.text, Loader=SafeLoader)
-    st.write(config)
     
     authenticator = stauth.Authenticate(
     config['credentials']['names'],
