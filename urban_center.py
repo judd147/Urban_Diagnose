@@ -25,7 +25,7 @@ def main():
     apps = st.sidebar.multiselect("选择分析模块", ["城市中心体系分析"])
     url = 'https://raw.githubusercontent.com/judd147/Urban_Diagnose/main/config.yaml'
     file = requests.get(url)
-    config = yaml.loads(file, Loader=SafeLoader)
+    config = yaml.load(file.text, Loader=SafeLoader)
     
     authenticator = stauth.Authenticate(
     config['credentials']['names'],
