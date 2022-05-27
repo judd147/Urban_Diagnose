@@ -7,8 +7,8 @@ dependencies:
   - libpysal
   - pysal
   - pip
+  - sqlalchemy
   - pip:
-      - geopandas==0.9.0
+      - geopandas
       - click==8
       - streamlit_authenticator
-      - fiona==1.8.20
