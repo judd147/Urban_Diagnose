@@ -5,9 +5,9 @@ dependencies:
   - plotly
   - numpy
   - protobuf>=3.6.0
-  - geopandas
   - pip
   - pip:
+      - geopandas
       - click==8
       - streamlit_authenticator
 # - pysal
