@@ -246,7 +246,7 @@ def show_plot(final_result, dfy, signal=0):
 
         st.plotly_chart(fig, use_container_width=True)
 
-@st.cache
+@st.experimental_memo
 def read_file(pois):
     frames = []
     for poi in pois:
@@ -255,7 +255,7 @@ def read_file(pois):
     df_final = pd.concat(frames)
     return df_final         
 
-@st.cache
+@st.experimental_memo
 def convert_df(df):
     return df.to_csv(encoding = "gb18030", index=False)        
       
@@ -343,7 +343,6 @@ def getPolygon(coord1,coord3):
     rectangle = Polygon([coord1,coord2,coord3,coord4])
     return rectangle
 
-@st.experimental_memo
 def reclassify(df):
     '''
     基于原始数据按首两个分号隔开生成三级分类，并按规则重新划分大类、中类、小类
