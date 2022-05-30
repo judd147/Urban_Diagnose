@@ -76,11 +76,7 @@ def urban_center_analysis():
                 netfish = create_grid(dfy, cellsize) #根据输入范围创建网格
                 
                 #读取合并所有类别数据
-                frames = []
-                for poi in pois:
-                    df = pd.read_csv(poi, encoding='gb18030')
-                    frames.append(df)
-                df_final = pd.concat(frames)
+                df_final = read_file(pois)
                 
             if preview:
                 st.write(df_final.head())
@@ -249,6 +245,15 @@ def show_plot(final_result, dfy, signal=0):
             })
 
         st.plotly_chart(fig, use_container_width=True)
+
+@st.cache
+def read_file(pois):
+    frames = []
+    for poi in pois:
+        df = pd.read_csv(poi, encoding='gb18030')
+        frames.append(df)
+    df_final = pd.concat(frames)
+    return df_final         
 
 @st.cache
 def convert_df(df):
