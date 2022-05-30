@@ -56,8 +56,9 @@ def urban_center_analysis():
         with st.form(key='urban_center_analysis'):
             #文件设置
             geo = st.file_uploader("上传范围", type='geojson', key='urban_center_analysis')
-            poi_path = st.text_input("POI数据所在文件夹", value=r'\\172.10.10.6\创研中心数据小组\01_数据\06_深圳市高德POI\深圳市高德POI2021\分类', key='urban_center_analysis')
-            out_path = st.text_input("结果导出文件夹", value=r'D:\Users\zhangliyao\Desktop', key='urban_center_analysis')
+            pois = st.file_uploader("上传POI数据", type='csv', key='urban_center_analysis', accept_multiple_files=True)
+
+            #out_path = st.text_input("结果导出文件夹", value=r'D:\Users\zhangliyao\Desktop', key='urban_center_analysis')
             #参数设置
             cellsize = st.number_input("网格大小", min_value=50, max_value=1000, value=500, help="根据分析范围划分网格，默认值为500米")
             geo_relation = st.radio("空间邻接算法", ["Queen", "Rook"], help='Queen为共顶点和共边邻接，Rook为共边邻接')      
@@ -75,10 +76,9 @@ def urban_center_analysis():
                 netfish = create_grid(dfy, cellsize) #根据输入范围创建网格
                 
                 #读取合并所有类别数据
-                files = os.listdir(poi_path)
                 frames = []
-                for file in files:
-                    df = pd.read_csv(poi_path+'\\'+file, encoding='ANSI')
+                for poi in pois:
+                    df = pd.read_csv(poi, encoding='ANSI')
                     frames.append(df)
                 df_final = pd.concat(frames)
                 
@@ -90,6 +90,7 @@ def urban_center_analysis():
                 df.drop_duplicates(subset=['name','address'], keep='first', inplace=True) #按名称+地址去重
                 df[['一级分类','二级分类','三级分类']] = df['type'].str.split(';',expand=True,n=2) #增加类别字段      
                 df = reclassify(df) #重分类
+            st.success('处理完成！共有', len(df), '条POI数据')
     
             with st.spinner("正在进行空间计算..."):
                 #空间相交
@@ -103,10 +104,17 @@ def urban_center_analysis():
                 center_result, polygons = explore_center(df_result, geo_relation, p_value, float(threshold))
                 #合并功能得到最终结果
                 final_result, entropy = func_decider(dfo, center_result, polygons, func_threshold)
-                #导出结果
-                name = parse_path(geo.name)
-                final_result.to_csv(out_path+'\中心分析结果_'+name+'.csv', encoding = "gb18030", index=False)
-            st.success('文件已成功保存至'+out_path)
+            st.success('运行成功！')    
+            #导出结果
+            name = parse_path(geo.name)
+            #final_result.to_csv(out_path+'\中心分析结果_'+name+'.csv', encoding = "gb18030", index=False)
+            csv = convert_df(final_result)
+            st.download_button(
+                 label="下载结果文件",
+                 data=csv,
+                 file_name='中心分析结果_'+name+'.csv',
+                 mime='csv',
+            )
             show_plot(final_result, dfy)
             
     elif mode == '可视化':
@@ -240,7 +248,11 @@ def show_plot(final_result, dfy, signal=0):
             })
 
         st.plotly_chart(fig, use_container_width=True)
-        
+
+@st.cache
+def convert_df(df):
+    return df.to_csv(encoding = "gb18030", index=False)        
+      
 def parse_path(path):
     """
     Goal: 从文件路径提取范围名称
