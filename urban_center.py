@@ -78,7 +78,7 @@ def urban_center_analysis():
                 #读取合并所有类别数据
                 frames = []
                 for poi in pois:
-                    df = pd.read_csv(poi, encoding='ANSI')
+                    df = pd.read_csv(poi, encoding='gb18030')
                     frames.append(df)
                 df_final = pd.concat(frames)
                 
