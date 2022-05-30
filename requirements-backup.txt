@@ -1,5 +1,0 @@
-plotly
-numpy==1.21.5
-geopandas
-protobuf==3.19.0
-click==8
