@@ -23,7 +23,7 @@ from pysal.explore.esda import G_Local
 def main():    
     st.sidebar.title("导航")
     apps = st.sidebar.multiselect("选择分析模块", ["城市中心体系分析"])
-    url = 'https://raw.githubusercontent.com/judd147/Urban_Diagnose/main/config.yaml'
+    url = 'https://raw.githubusercontent.com/judd147/Urban_Diagnose/main/user_config.yaml'
     file = requests.get(url)
     config = yaml.load(file.text, Loader=SafeLoader)
     
