@@ -91,7 +91,7 @@ def urban_center_analysis():
                 df[['一级分类','二级分类','三级分类']] = df['type'].str.split(';',expand=True,n=2) #增加类别字段
                 st.write('ready to play big')
                 df = reclassify(df) #重分类
-            st.success('处理完成！共有', len(df), '条POI数据')
+            st.success('处理完成！共有'+str(len(df))+'条POI数据')
     
             with st.spinner("正在进行空间计算..."):
                 #空间相交
