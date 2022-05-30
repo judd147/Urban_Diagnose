@@ -37,7 +37,7 @@ def main():
     name, authentication_status, username = authenticator.login('Login', 'main')
     
     if st.session_state["authentication_status"]:
-        authenticator.logout('Logout', 'sidebar')
+        authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{st.session_state["name"]}*')
         if apps.__contains__("城市中心体系分析"):
             urban_center_analysis()
