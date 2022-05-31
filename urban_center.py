@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-城市中心体系分析 Web App
+蕾奥城市中心体系分析软件V1.0
 Last Edit 5/31/2022
 @author: zhangliyao
 """
@@ -47,7 +47,7 @@ def main():
    
 def urban_center_analysis():
     #数据输入
-    st.header("城市中心体系分析")
+    st.header("蕾奥城市中心体系分析软件V1.0")
     st.caption("基于POI数据的城市中心范围、等级、功能识别")
     mode = st.radio("选择运行模式", ["常规", "可视化"], help='常规模式指从数据输入到可视化的全流程，可视化指上传结果文件进行可视化')
     
@@ -57,7 +57,6 @@ def urban_center_analysis():
             geo = st.file_uploader("上传范围", type='geojson', key='urban_center_analysis')
             pois = st.file_uploader("上传POI数据", type='csv', key='urban_center_analysis', accept_multiple_files=True)
 
-            #out_path = st.text_input("结果导出文件夹", value=r'D:\Users\zhangliyao\Desktop', key='urban_center_analysis')
             #参数设置
             cellsize = st.number_input("网格大小", min_value=50, max_value=1000, value=500, help="根据分析范围划分网格，默认值为500米")
             geo_relation = st.radio("空间邻接算法", ["Queen", "Rook"], help='Queen为共顶点和共边邻接，Rook为共边邻接')      
