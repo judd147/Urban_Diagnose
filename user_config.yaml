@@ -5,4 +5,4 @@ credentials:
 cookie:
   name: 'cookie01'
   key: 'sfh3ef&f70qa#kwdJ'
-  expiry_days: 7
+  expiry_days: 30
