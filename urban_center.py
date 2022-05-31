@@ -89,7 +89,7 @@ def urban_center_analysis():
                 df.drop(columns=['address','type'], inplace=True)
                 
                 st.write('ready to play big')
-                df = reclassify(df) #重分类
+                #df = reclassify(df) #重分类
             st.success('处理完成！共有'+str(len(df))+'条POI数据')
     
             with st.spinner("正在进行空间计算..."):
@@ -249,7 +249,6 @@ def show_plot(final_result, dfy, signal=0):
 
         st.plotly_chart(fig, use_container_width=True)
 
-@st.experimental_memo
 def read_file(pois):
     frames = []
     for poi in pois:
