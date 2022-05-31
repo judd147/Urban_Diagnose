@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 """
 城市中心体系分析 Web App
-Last Edit 5/25/2022
+Last Edit 5/31/2022
 @author: zhangliyao
 """
-
-import os
+import gc
 import requests
 import streamlit as st
 import streamlit_authenticator as stauth
@@ -70,22 +69,26 @@ def urban_center_analysis():
             run = st.form_submit_button(label='运行')
             
         if run:
+            gc.enable()
             with st.spinner("正在读取数据..."):
                 dfy = gpd.read_file(geo) #输入范围
                 dfy.to_crs(epsg=4547, inplace=True) #转投影坐标
                 netfish = create_grid(dfy, cellsize) #根据输入范围创建网格
                 
                 #读取合并所有类别数据
-                df_final = read_file(pois)
+                df = read_file(pois)
                 
             if preview:
-                st.write(df_final.head())
+                st.write(df.head())
     
             with st.spinner("正在处理POI数据..."):
-                df = df_final.dropna(subset=['name'], axis=0, how='any') #检查名称是否为空
+                df.dropna(subset=['name'], axis=0, how='any', inplace=True) #检查名称是否为空
                 df.drop_duplicates(subset=['name','address'], keep='first', inplace=True) #按名称+地址去重
-                df[['一级分类','二级分类','三级分类']] = df['type'].str.split(';',expand=True,n=2) #增加类别字段
-                st.write('ready to play big')
+                df[['一级分类','二级分类','三级分类']] = df['type'].str.split(';', expand=True, n=2) #增加类别字段
+                
+                df.drop(columns=['address','type'], inplace=True)
+                gc.collect()
+                #st.write('ready to play big')
                 df = reclassify(df) #重分类
             st.success('处理完成！共有'+str(len(df))+'条POI数据')
     
@@ -250,7 +253,7 @@ def show_plot(final_result, dfy, signal=0):
 def read_file(pois):
     frames = []
     for poi in pois:
-        df = pd.read_csv(poi, encoding='gb18030')
+        df = pd.read_csv(poi, usecols=['name','address','type','wgslng','wgslat'], converters = {'name': str, 'address': str, 'type': str, 'wgslng': float, 'wgslat': float}, encoding='gb18030')
         frames.append(df)
     df_final = pd.concat(frames)
     return df_final         
