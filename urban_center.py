@@ -78,6 +78,7 @@ def urban_center_analysis():
                 #读取合并所有类别数据
                 df = read_file(pois)
                 del pois
+                gc.collect()
                 
             if preview:
                 st.write(df.head())
@@ -89,6 +90,7 @@ def urban_center_analysis():
                 
                 df.drop(columns=['address','type'], inplace=True)
                 gc.collect()
+                
                 st.write('ready to play big')
                 df = reclassify(df) #重分类
             st.success('处理完成！共有'+str(len(df))+'条POI数据')
