@@ -75,12 +75,9 @@ def urban_center_analysis():
                 netfish = create_grid(dfy, cellsize) #根据输入范围创建网格
                 
                 #读取合并所有类别数据
-                df = read_file(pois)
+                df = read_file(pois, dfy)
                 del pois
-                
-                #筛选范围内数据
-                df = poi_intersect(df, dfy)
-     
+
             if preview:
                 st.write(df.head())
     
@@ -109,7 +106,6 @@ def urban_center_analysis():
             st.success('运行成功！')    
             #导出结果
             name = parse_path(geo.name)
-            #final_result.to_csv(out_path+'\中心分析结果_'+name+'.csv', encoding = "gb18030", index=False)
             csv = convert_df(final_result)
             st.download_button(
                  label="下载结果文件",
@@ -251,10 +247,13 @@ def show_plot(final_result, dfy, signal=0):
 
         st.plotly_chart(fig, use_container_width=True)
 
-def read_file(pois):
+def read_file(pois, dfy):
     frames = []
     for poi in pois:
         df = pd.read_csv(poi, usecols=['name','address','type','wgslng','wgslat'], converters = {'name': str, 'address': str, 'type': str, 'wgslng': float, 'wgslat': float}, encoding='gb18030')
+        #筛选范围内数据
+        df = poi_intersect(df, dfy)
+        
         frames.append(df)
     df_final = pd.concat(frames)
     return df_final         
