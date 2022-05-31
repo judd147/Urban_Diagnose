@@ -78,14 +78,16 @@ def urban_center_analysis():
                 df = read_file(pois)
                 del pois
                 
+                #筛选范围内数据
+                df = poi_intersect(df, dfy)
+     
             if preview:
                 st.write(df.head())
     
             with st.spinner("正在处理POI数据..."):
                 df.dropna(subset=['name'], axis=0, how='any', inplace=True) #检查名称是否为空
                 df.drop_duplicates(subset=['name','address'], keep='first', inplace=True) #按名称+地址去重
-                df[['一级分类','二级分类','三级分类']] = df['type'].str.split(';', expand=True, n=2) #增加类别字段
-                
+                df[['一级分类','二级分类','三级分类']] = df['type'].str.split(';', expand=True, n=2) #增加类别字段                
                 df.drop(columns=['address','type'], inplace=True)
                 
                 st.write('ready to play big')
@@ -93,8 +95,8 @@ def urban_center_analysis():
             st.success('处理完成！共有'+str(len(df))+'条POI数据')
     
             with st.spinner("正在进行空间计算..."):
-                #空间相交
-                dfo = poi_intersect(df, dfy, netfish)
+                #渔网空间相交
+                dfo = gpd.sjoin(netfish, df, op='contains') #POI数据与渔网空间相交              
                 #指数计算
                 result = calc_index(dfo)
                 #指数结果合并geometry
@@ -650,23 +652,21 @@ def reclassify(df):
     df = df[df['小类'].notnull()]
     return df
 
-def poi_intersect(df, dfy, netfish):
+def poi_intersect(df, dfy):
     '''
-    Goals: 重分类后的POI数据分别与分析范围、渔网空间相交
+    Goals: 重分类后的POI数据与分析范围相交
     Args: 
         df[dataframe]: POI数据
         dfy[geodataframe]: 分析范围
         netfish[geodataframe]: 渔网范围
     Returns:
-        dfo[geodataframe]: 分析范围内的POI栅格数据
+        dfo[geodataframe]: 分析范围内的POI数据
     '''
+    dfy = dfy.dissolve()
     POI = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['wgslng'], df['wgslat']))
     POI.crs = 'EPSG:4326' #按WGS84读取
     POI = POI.to_crs(epsg=4547) #转投影坐标
-    dfb = gpd.sjoin(POI, dfy, op='intersects') #分析范围与POI数据空间相交
-    if dfb.columns.__contains__('index_right'):
-        dfb.drop(['index_right'], axis=1, inplace=True)
-    dfo = gpd.sjoin(netfish, dfb, op='contains') #POI数据与渔网空间相交
+    dfo = df[df.within(dfy.geometry[0])]
     return dfo
 
 def calc_index(dfo):
