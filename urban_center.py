@@ -250,10 +250,9 @@ def show_plot(final_result, dfy, signal=0):
 def read_file(pois, dfy):
     frames = []
     for poi in pois:
-        df = pd.read_csv(poi, usecols=['name','address','type','wgslng','wgslat'], converters = {'name': str, 'address': str, 'type': str, 'wgslng': float, 'wgslat': float}, encoding='gb18030')
+        df = pd.read_csv(poi, usecols=['id','name','address','type','wgslng','wgslat'], converters = {'id': str, 'name': str, 'address': str, 'type': str, 'wgslng': float, 'wgslat': float}, encoding='gb18030')
         #筛选范围内数据
-        df = poi_intersect(df, dfy)
-        
+        df = poi_intersect(df, dfy)       
         frames.append(df)
     df_final = pd.concat(frames)
     return df_final         
