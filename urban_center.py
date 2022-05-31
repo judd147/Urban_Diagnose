@@ -665,7 +665,7 @@ def poi_intersect(df, dfy):
     POI = gpd.GeoDataFrame(df, geometry = gpd.points_from_xy(df['wgslng'], df['wgslat']))
     POI.crs = 'EPSG:4326' #按WGS84读取
     POI = POI.to_crs(epsg=4547) #转投影坐标
-    dfo = df[df.within(dfy.geometry[0])]
+    dfo = POI[POI.within(dfy.geometry[0])]
     return dfo
 
 def calc_index(dfo):
