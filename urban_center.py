@@ -25,7 +25,7 @@ def main():
     url = 'https://raw.githubusercontent.com/judd147/Urban_Diagnose/main/user_config.yaml'
     file = requests.get(url)
     config = yaml.load(file.text, Loader=SafeLoader)
-    '''
+
     authenticator = stauth.Authenticate(
     config['credentials']['names'],
     config['credentials']['usernames'],
@@ -44,10 +44,6 @@ def main():
         st.error('Username/password is incorrect')
     elif st.session_state["authentication_status"] == None:
         st.warning('Please enter your username and password')
-    '''
-    if apps.__contains__("城市中心体系分析"):
-        urban_center_analysis()
-    
    
 def urban_center_analysis():
     #数据输入
