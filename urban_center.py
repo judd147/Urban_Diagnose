@@ -99,10 +99,15 @@ def urban_center_analysis():
                 #指数结果合并geometry
                 dfo_join = dfo.drop_duplicates(subset=['index','geometry'], keep='first')
                 df_result = pd.merge(result, dfo_join[['index', 'geometry']], on='index', how='inner')
+                del dfo_join
+                del result
                 #中心相关计算
                 center_result, polygons = explore_center(df_result, geo_relation, p_value, float(threshold))
                 #合并功能得到最终结果
                 final_result, entropy = func_decider(dfo, center_result, polygons, func_threshold)
+                del dfo
+                del df_result
+                del center_result
             st.success('运行成功！')    
             #导出结果
             name = parse_path(geo.name)
