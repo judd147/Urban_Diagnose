@@ -257,9 +257,9 @@ def read_file(pois, dfy):
     df_final = pd.concat(frames)
     return df_final         
 
-@st.experimental_memo
+@st.cache(hash_funcs=None)
 def convert_df(df):
-    return df.to_csv(encoding = "gb18030", index=False)        
+    return df.to_csv(encoding = "gb18030", index=False)  
       
 def parse_path(path):
     """
