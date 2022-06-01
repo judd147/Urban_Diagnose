@@ -25,7 +25,7 @@ def main():
     url = 'https://raw.githubusercontent.com/judd147/Urban_Diagnose/main/user_config.yaml'
     file = requests.get(url)
     config = yaml.load(file.text, Loader=SafeLoader)
-    
+    '''
     authenticator = stauth.Authenticate(
     config['credentials']['names'],
     config['credentials']['usernames'],
@@ -35,7 +35,6 @@ def main():
     config['cookie']['expiry_days'])
     name, authentication_status, username = authenticator.login('Login', 'main')
     
-    '''
     if st.session_state["authentication_status"]:
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{st.session_state["name"]}*')
