@@ -35,14 +35,14 @@ def main():
     config['cookie']['expiry_days'])
     name, authentication_status, username = authenticator.login('Login', 'main')
     
-    if authentication_status:
+    if st.session_state["authentication_status"]:
         authenticator.logout('Logout', 'main')
-        st.write(f'Welcome *{name}*')
+        st.write(f'Welcome *{st.session_state["name"]}*')
         if apps.__contains__("城市中心体系分析"):
             urban_center_analysis()
-    elif authentication_status == False:
+    elif st.session_state["authentication_status"] == False:
         st.error('Username/password is incorrect')
-    elif authentication_status == None:
+    elif st.session_state["authentication_status"] == None:
         st.warning('Please enter your username and password')
    
 def urban_center_analysis():
@@ -134,7 +134,7 @@ def show_plot(final_result, dfy, signal=0):
     Returns: None
     """
     st.subheader('可视化参数设置')
-    with st.form(key='urban_center_analysis'):
+    with st.form(key='visualization'):
         key_option = st.selectbox("Mapbox Key", options=['默认样式1首选','默认样式1备选','默认样式2'], help="用于加载Mapbox底图")
         
         col1, col2, col3 = st.columns(3)
