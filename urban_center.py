@@ -257,7 +257,7 @@ def read_file(pois, dfy):
     df_final = pd.concat(frames)
     return df_final         
 
-@st.cache(hash_funcs=None)
+@st.cache()
 def convert_df(df):
     return df.to_csv(encoding = "gb18030", index=False)  
       
