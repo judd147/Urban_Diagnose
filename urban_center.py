@@ -35,9 +35,8 @@ def main():
     config['cookie']['expiry_days'])
     name, authentication_status, username = authenticator.login('Login', 'main')
     
-    logged_in = False
-    if st.session_state["authentication_status"] or logged_in:
-        logged_in = True
+    '''
+    if st.session_state["authentication_status"]:
         authenticator.logout('Logout', 'main')
         st.write(f'Welcome *{st.session_state["name"]}*')
         if apps.__contains__("城市中心体系分析"):
@@ -46,6 +45,10 @@ def main():
         st.error('Username/password is incorrect')
     elif st.session_state["authentication_status"] == None:
         st.warning('Please enter your username and password')
+    '''
+    if apps.__contains__("城市中心体系分析"):
+        urban_center_analysis()
+    
    
 def urban_center_analysis():
     #数据输入
