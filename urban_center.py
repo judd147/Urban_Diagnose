@@ -4,7 +4,7 @@
 Last Edit 5/31/2022
 @author: zhangliyao
 """
-import gc
+
 import requests
 import streamlit as st
 import streamlit_authenticator as stauth
@@ -72,7 +72,6 @@ def urban_center_analysis():
             run = st.form_submit_button(label='运行')
             
         if run:
-            gc.enable()
             with st.spinner("正在读取数据..."):
                 dfy = gpd.read_file(geo) #输入范围
                 dfy.to_crs(epsg=4547, inplace=True) #转投影坐标
@@ -81,6 +80,7 @@ def urban_center_analysis():
                 #读取合并所有类别数据
                 df = read_file(pois, dfy)
                 del pois
+            st.success('数据读取完成！')
 
             if preview:
                 st.write(df.head())
