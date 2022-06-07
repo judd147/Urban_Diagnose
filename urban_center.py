@@ -113,24 +113,24 @@ def urban_center_analysis():
                 del df_result
                 del center_result
             st.success('运行成功！')    
-            #导出结果
-            name = parse_path(geo.name)
-            csv = convert_df(final_result)
-            downloaded = st.download_button(
-                 label="下载结果文件",
-                 data=csv,
-                 file_name='中心分析结果_'+name+'.csv',
-                 mime='csv',
-            )
-            if downloaded:
-                show_plot(final_result, dfy)
+        #导出结果
+        name = parse_path(geo.name)
+        csv = convert_df(final_result)
+        downloaded = st.download_button(
+             label="下载结果文件",
+             data=csv,
+             file_name='中心分析结果_'+name+'.csv',
+             mime='csv',
+        )
+        if downloaded:
+            show_plot(final_result, dfy)
             
     elif mode == '可视化':
         data = st.file_uploader("上传分析结果", type='csv', key='replot')
         geo = st.file_uploader("上传范围", type='geojson', key='replot')
         
         if data and geo: 
-            df = pd.read_csv(data, encoding = "gb18030")
+            df = pd.read_csv(data, encoding = "UTF-8")
             dfy = gpd.read_file(geo) #输入范围
             dfy.to_crs(epsg=4547, inplace=True) #转投影坐标
             show_plot(df, dfy, 1)
@@ -269,7 +269,7 @@ def read_file(pois, dfy):
 
 @st.cache()
 def convert_df(df):
-    return df.to_csv(index=False).encode('gb18030')
+    return df.to_csv(index=False).encode('UTF-8')
       
 def parse_path(path):
     """
