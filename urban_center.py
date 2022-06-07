@@ -26,7 +26,6 @@ def main():
     file = requests.get(url)
     config = yaml.load(file.text, Loader=SafeLoader)
     
-    '''
     authenticator = stauth.Authenticate(
     config['credentials']['names'],
     config['credentials']['usernames'],
@@ -45,7 +44,7 @@ def main():
         st.error('Username/password is incorrect')
     elif st.session_state["authentication_status"] == None:
         st.warning('Please enter your username and password')
-    '''
+    
     if apps.__contains__("城市中心体系分析"):
        urban_center_analysis() 
    
@@ -53,9 +52,9 @@ def urban_center_analysis():
     #数据输入
     st.header("蕾奥城市中心体系分析软件V1.0")
     st.caption("基于POI数据的城市中心范围、等级、功能识别")
-    mode = st.radio("选择运行模式", ["常规", "可视化"], help='常规模式指从数据输入到可视化的全流程，可视化指上传结果文件进行可视化')
+    mode = st.radio("选择运行模式", ["中心分析", "可视化"], help='中心分析包括从数据输入到导出结果文件的全过程，可视化指上传生成的结果文件进行可视化')
     
-    if mode == '常规':
+    if mode == '中心分析':
         with st.form(key='urban_center_analysis'):
             #文件设置
             geo = st.file_uploader("上传范围", type='geojson', key='urban_center_analysis')
@@ -113,17 +112,15 @@ def urban_center_analysis():
                 del df_result
                 del center_result
             st.success('运行成功！')    
-        #导出结果
-        name = parse_path(geo.name)
-        csv = convert_df(final_result)
-        downloaded = st.download_button(
-             label="下载结果文件",
-             data=csv,
-             file_name='中心分析结果_'+name+'.csv',
-             mime='csv',
-        )
-        if downloaded:
-            show_plot(final_result, dfy)
+            #导出结果
+            name = parse_path(geo.name)
+            csv = convert_df(final_result)
+            st.download_button(
+                 label="下载结果文件",
+                 data=csv,
+                 file_name='中心分析结果_'+name+'.csv',
+                 mime='csv',
+            )
             
     elif mode == '可视化':
         data = st.file_uploader("上传分析结果", type='csv', key='replot')
