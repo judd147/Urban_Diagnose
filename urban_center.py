@@ -129,7 +129,7 @@ def urban_center_analysis():
         geo = st.file_uploader("上传范围", type='geojson', key='replot')
         
         if data and geo: 
-            df = pd.read_csv(data, encoding = "gb18030")
+            df = pd.read_csv(data, encoding = "utf-8")
             dfy = gpd.read_file(geo) #输入范围
             dfy.to_crs(epsg=4547, inplace=True) #转投影坐标
             show_plot(df, dfy, 1)
