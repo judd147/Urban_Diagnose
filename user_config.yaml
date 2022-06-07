@@ -1,7 +1,7 @@
 credentials:
-  names: ['Zhang Liyao', 'Xiao Junyao', 'Huang Zhihui', 'Zheng Ting']
-  usernames: ['zhanl022', 'xiaoj022', 'huanz022', 'zhent022']
-  passwords: ['$2b$12$DKeytYjADsuShp0jGxbhLOCB3iiMXYecZhu4ILh20mGIKHptC8mP6', '$2b$12$lEcnTReB9AoIgXVPbXkx5.g1H64RHFnQmbhdqzKHOmts2xVrPvqiq', '$2b$12$rvVCQne2Ck18XK5xFqm8PeRVd78RqP0mqQZ9RMpAW1GnhfUWkcWAe', '$2b$12$GzcDLTa1wLXA2ShHSl8V4.dAgF2XtHOnkWwFwvoHF.6KWHoMx/8Dq']
+  names: ['Zhang Liyao', 'Xiao Junyao', 'Huang Zhihui', 'Zheng Ting', 'Li Jiayun']
+  usernames: ['zhanl022', 'xiaoj022', 'huanz022', 'zhent022', 'lij022']
+  passwords: ['$2b$12$DKeytYjADsuShp0jGxbhLOCB3iiMXYecZhu4ILh20mGIKHptC8mP6', '$2b$12$lEcnTReB9AoIgXVPbXkx5.g1H64RHFnQmbhdqzKHOmts2xVrPvqiq', '$2b$12$rvVCQne2Ck18XK5xFqm8PeRVd78RqP0mqQZ9RMpAW1GnhfUWkcWAe', '$2b$12$GzcDLTa1wLXA2ShHSl8V4.dAgF2XtHOnkWwFwvoHF.6KWHoMx/8Dq', '$2b$12$du2G62MogJZfKDG3sQpnDuPi2nOzrjyXna28No2H6VDjFIXEf1bZe']
 cookie:
   name: 'cookie01'
   key: 'sfh3ef&f70qa#kwdJ'
