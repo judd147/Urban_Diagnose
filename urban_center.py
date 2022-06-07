@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 蕾奥城市中心体系分析软件V1.0
-Last Edit 5/31/2022
+Last Edit 6/7/2022
 @author: zhangliyao
 """
 
@@ -256,6 +256,7 @@ def show_plot(final_result, dfy, signal=0):
 
         st.plotly_chart(fig, use_container_width=True)
 
+@st.cache()
 def read_file(pois, dfy):
     frames = []
     for poi in pois:
