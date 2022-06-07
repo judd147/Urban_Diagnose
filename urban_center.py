@@ -79,7 +79,7 @@ def urban_center_analysis():
                 
                 #读取合并所有类别数据
                 df = read_file(pois, dfy)
-                del pois
+                #del pois
             st.success('数据读取完成！')
 
             if preview:
@@ -355,7 +355,7 @@ def getPolygon(coord1,coord3):
     rectangle = Polygon([coord1,coord2,coord3,coord4])
     return rectangle
 
-@st.cache(max_entries=10, ttl=3600)
+@st.cache()
 def reclassify(df):
     '''
     基于原始数据按首两个分号隔开生成三级分类，并按规则重新划分大类、中类、小类
