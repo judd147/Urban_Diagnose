@@ -93,7 +93,7 @@ def urban_center_analysis():
                 
                 st.write('ready to play big')
                 df = reclassify(df) #重分类
-            st.success('处理完成！共有'+str(len(df))+'条POI数据')
+            st.success('数据处理完成！共有'+str(len(df))+'条POI数据')
     
             with st.spinner("正在进行空间计算..."):
                 #渔网空间相交
@@ -122,8 +122,8 @@ def urban_center_analysis():
                  file_name='中心分析结果_'+name+'.csv',
                  mime='csv',
             )
-        if downloaded:
-            show_plot(final_result, dfy)
+            if downloaded:
+                show_plot(final_result, dfy)
             
     elif mode == '可视化':
         data = st.file_uploader("上传分析结果", type='csv', key='replot')
