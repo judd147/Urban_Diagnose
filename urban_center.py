@@ -79,7 +79,7 @@ def urban_center_analysis():
                 
                 #读取合并所有类别数据
                 df = read_file(pois, dfy)
-                #del pois
+                del pois
             st.success('数据读取完成！')
 
             if preview:
@@ -256,7 +256,6 @@ def show_plot(final_result, dfy, signal=0):
 
         st.plotly_chart(fig, use_container_width=True)
 
-@st.cache()
 def read_file(pois, dfy):
     frames = []
     for poi in pois:
