@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 蕾奥城市中心体系分析软件V1.0
-Last Edit 6/7/2022
+Last Edit 6/8/2022
 @author: zhangliyao
 """
 
@@ -86,8 +86,6 @@ def urban_center_analysis():
                 df.drop_duplicates(subset=['name','address'], keep='first', inplace=True) #按名称+地址去重
                 df[['一级分类','二级分类','三级分类']] = df['type'].str.split(';', expand=True, n=2) #增加类别字段                
                 df.drop(columns=['address','type'], inplace=True)
-                
-                st.write('ready to play big')
                 df = reclassify(df) #重分类
             st.success('数据处理完成！共有'+str(len(df))+'条POI数据')
     
@@ -118,6 +116,7 @@ def urban_center_analysis():
                  file_name='中心分析结果_'+name+'.csv',
                  mime='csv',
             )
+            show_plot(final_result, dfy)            
             
     elif mode == '可视化':
         data = st.file_uploader("上传分析结果", type='csv', key='replot')
