@@ -27,9 +27,7 @@ def main():
     config = yaml.load(file.text, Loader=SafeLoader)
     
     authenticator = stauth.Authenticate(
-    config['credentials']['names'],
-    config['credentials']['usernames'],
-    config['credentials']['passwords'],
+    config['credentials'],
     config['cookie']['name'],
     config['cookie']['key'],
     config['cookie']['expiry_days'])
