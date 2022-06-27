@@ -579,7 +579,7 @@ def reclassify(df):
     df.loc[rule_8_7_4, ['小类']] = ['学校']
     
     rule_8_7_5 = (df['二级分类']=='科教文化场所') & ((df['name'].str.contains('培|训|辅导|进修|考研|驾|琴|棋|书法|画|美术|舞蹈|作文|英语'))|((df['小类'].isnull()) & (df['name'].str.contains('教育'))))
-    df.loc[rule_8_7_5, ['小类']] = ['学校']
+    df.loc[rule_8_7_5, ['小类']] = ['培训机构']
     
     rule_8_7_6 = (df['二级分类']=='科教文化场所') & (df['name'].str.contains('实验|研究|设计院|研发'))
     df.loc[rule_8_7_6, ['小类']] = ['科研机构']
