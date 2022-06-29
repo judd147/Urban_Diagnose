@@ -657,7 +657,6 @@ def poi_intersect(df, dfy):
     Args: 
         df[dataframe]: POI数据
         dfy[geodataframe]: 分析范围
-        netfish[geodataframe]: 渔网范围
     Returns:
         dfo[geodataframe]: 分析范围内的POI数据
     '''
