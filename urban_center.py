@@ -52,8 +52,8 @@ def urban_center_analysis():
     if mode == '中心分析':
         with st.form(key='urban_center_analysis'):
             #文件设置
-            geo = st.file_uploader("上传范围", type='geojson', key='urban_center_analysis')
-            pois = st.file_uploader("上传POI数据", type='csv', key='urban_center_analysis', accept_multiple_files=True)
+            geo = st.file_uploader("上传范围", type='geojson', key='01')
+            pois = st.file_uploader("上传POI数据", type='csv', key='02', accept_multiple_files=True)
 
             #参数设置
             cellsize = st.number_input("网格大小", min_value=50, max_value=1000, value=500, help="根据分析范围划分网格，默认值为500米")
