@@ -14,7 +14,6 @@ import geopandas as gpd
 import libpysal
 import json
 import yaml
-import io
 from yaml.loader import SafeLoader
 from shapely.geometry import Polygon
 from numpy import log as ln
@@ -246,11 +245,10 @@ def show_plot(final_result, dfy, signal=0):
                     }
                 ]
             })
-        buffer = io.BytesIO()
-        fig.write_image(file=buffer, format="jpg", scale=4)
+        figure = convert_plot(fig)
         st.download_button(
             label="下载图片",
-            data=buffer,
+            data=figure,
             file_name="figure.jpg",
             mime="image/jpg",
         )
@@ -269,6 +267,10 @@ def read_file(pois, dfy):
 @st.cache()
 def convert_df(df):
     return df.to_csv(index=False).encode('UTF-8')
+
+@st.cache()
+def convert_plot(fig):
+    return fig.write_image(format="jpg", scale=4).encode('UTF-8')
       
 def parse_path(path):
     """
