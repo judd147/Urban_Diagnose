@@ -272,7 +272,7 @@ def convert_df(df):
 
 @st.cache()
 def convert_plot(fig, buffer):
-    return fig.write_image(file=buffer, format="jpg", scale=4).encode('UTF-8')
+    return fig.write_image(file=buffer, format="jpg", scale=4)
       
 def parse_path(path):
     """
