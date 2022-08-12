@@ -14,6 +14,7 @@ import geopandas as gpd
 import libpysal
 import json
 import yaml
+import io
 from yaml.loader import SafeLoader
 from shapely.geometry import Polygon
 from numpy import log as ln
@@ -270,7 +271,8 @@ def convert_df(df):
 
 @st.cache()
 def convert_plot(fig):
-    return fig.write_image(format="jpg", scale=4).encode('UTF-8')
+    buffer = io.BytesIO()
+    return fig.write_image(file=buffer, format="jpg", scale=4).encode('UTF-8')
       
 def parse_path(path):
     """
