@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 蕾奥城市中心体系分析软件V1.0
-Last Edit 6/27/2022
+Last Edit 8/12/2022
 @author: zhangliyao
 """
 
@@ -117,8 +117,8 @@ def urban_center_analysis():
             show_plot(final_result, dfy)            
             
     elif mode == '可视化':
-        data = st.file_uploader("上传分析结果", type='csv', key='replot')
-        geo = st.file_uploader("上传范围", type='geojson', key='replot')
+        data = st.file_uploader("上传分析结果", type='csv', key='plot1')
+        geo = st.file_uploader("上传范围", type='geojson', key='plot2')
         
         if data and geo: 
             df = pd.read_csv(data, encoding = "UTF-8")
