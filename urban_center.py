@@ -252,7 +252,7 @@ def show_plot(final_result, dfy, signal=0):
             label="下载图片",
             data=figure,
             file_name="figure.jpg",
-            mime="image/jpg",
+            mime="image/jpeg",
         )
         st.plotly_chart(fig, use_container_width=True)
 
