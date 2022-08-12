@@ -10,3 +10,4 @@ dependencies:
   - pip:
       - geopandas
       - streamlit_authenticator
+      - kaleido
