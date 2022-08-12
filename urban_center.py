@@ -246,14 +246,14 @@ def show_plot(final_result, dfy, signal=0):
                     }
                 ]
             })
-        buffer = io.BytesIO()
-        fig.write_image(file=buffer, format="jpg", scale=4)
-        st.download_button(
-            label="下载图片",
-            data=buffer,
-            file_name="figure.jpg",
-            mime="image/jpg",
-        )
+        #buffer = io.BytesIO()
+        #fig.write_image(file=buffer, format="jpg", scale=4)
+        #st.download_button(
+        #    label="下载图片",
+        #    data=buffer,
+        #    file_name="figure.jpg",
+        #    mime="image/jpg",
+        #)
         st.plotly_chart(fig, use_container_width=True)
 
 def read_file(pois, dfy):
