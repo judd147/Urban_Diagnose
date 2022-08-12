@@ -247,12 +247,12 @@ def show_plot(final_result, dfy, signal=0):
                 ]
             })
         buffer = io.BytesIO()
-        figure = convert_plot(fig, buffer)
+        fig.write_image(file=buffer, format="jpg", scale=4)
         st.download_button(
             label="下载图片",
-            data=figure,
+            data=buffer,
             file_name="figure.jpg",
-            mime="image/jpeg",
+            mime="image/jpg",
         )
         st.plotly_chart(fig, use_container_width=True)
 
@@ -269,10 +269,6 @@ def read_file(pois, dfy):
 @st.cache()
 def convert_df(df):
     return df.to_csv(index=False).encode('UTF-8')
-
-@st.cache()
-def convert_plot(fig, buffer):
-    return fig.write_image(file=buffer, format="jpg", scale=4)
       
 def parse_path(path):
     """
