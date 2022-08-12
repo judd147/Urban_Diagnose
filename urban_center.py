@@ -14,6 +14,7 @@ import geopandas as gpd
 import libpysal
 import json
 import yaml
+import io
 from yaml.loader import SafeLoader
 from shapely.geometry import Polygon
 from numpy import log as ln
