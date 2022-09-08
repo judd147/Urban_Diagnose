@@ -6,6 +6,7 @@ dependencies:
   - protobuf>=3.6.0
   - pysal
   - libpysal
+  - scipy==1.8.1
   - pip
   - pip:
       - geopandas
