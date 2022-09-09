@@ -12,3 +12,4 @@ dependencies:
       - streamlit_authenticator
       - kaleido
       - scipy
+      - matplotlib
